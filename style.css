@@ -37,7 +37,7 @@ fieldset {
     padding-right: 10px;
     box-shadow: 1px 1px 15px #c4c4c4;
 }
-.conteudo-principal, .conteudo-aleatorio {
+.conteudo-principal, .conteudo-aleatorio, .conteudo-dinamico {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 70px;
@@ -69,6 +69,6 @@ fieldset {
     object-fit: cover;
     height: 150px;
 }
-.marcacao {
+.oculto {
     display: none;
 }
