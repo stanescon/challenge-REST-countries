@@ -49,7 +49,10 @@ function todosOsPaises (indice){
         let nome = resposta[indice].name.common
         let populacao = resposta[indice].population
         let regiao = resposta[indice].region;
-        let capital = resposta[indice].capital[0]
+        let capital = ""
+        if(resposta[indice].capital != undefined){
+            capital = resposta[indice].capital[0]
+        }
         // console.log(bandeira, nome, populacao, regiao, capital)
     adcElemento(conteudoAleatorio, 0, `<img src="${bandeira}" class="bandeira">
     <h2 class="titulo">${nome}</h2>
@@ -68,7 +71,6 @@ for(let i=0; i<250; i++){
 const filtro = document.querySelector('.filtro')
 
 filtro.addEventListener('change', function(ev){
-    console.log(ev.target.value)
     let valor = ev.target.value
     if(valor == 1){
         mostrarRegiao('africa')
@@ -104,8 +106,9 @@ function mostrarRegiao(regiao){
         let populacao = resposta[i].population
         let regiao = resposta[i].region;
         let capital = ""
-        if(typeof resposta[i].capital[0] == "string"){
+        if(resposta[i].capital != undefined){
             capital = resposta[i].capital[0]
+            console.log(capital)
         }
             adcElemento(conteudoDinamico, 1, `<img src="${bandeira}" class="bandeira">
             <h2 class="titulo">${nome}</h2>
