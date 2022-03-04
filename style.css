@@ -1,0 +1,74 @@
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecalho {
+    display: flex;
+    padding: 30px 80px;
+    box-shadow: 0px 1px 5px #a8a8a8;
+    justify-content: space-between;
+}
+.titulo-principal{
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+.pesquisas {
+    display: flex;
+    padding: 30px 80px;
+    justify-content: space-between;
+}
+.input-padrao {
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 15px;
+    padding-left: 20px;
+    width: 500px;
+    border: none;
+    box-shadow: 1px 1px 15px #c4c4c4;
+}
+.filtro select {
+    padding: 15px;
+    width: 200px;
+    border: none;
+}
+fieldset {
+    font-family: 'Nunito Sans', sans-serif;
+    padding-right: 10px;
+    box-shadow: 1px 1px 15px #c4c4c4;
+}
+.conteudo-principal, .conteudo-aleatorio {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 70px;
+    padding: 0 80px;
+    margin-top: 80px; 
+}
+.cartao-pais {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 15px #c4c4c4;
+    padding-bottom: 50px;
+
+}
+.titulo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 20px;
+}
+.cartao-pais p {
+    margin-left: 20px;
+    line-height: 1.5rem;
+}
+.cartao-pais span {
+    font-weight: 600;
+}
+.bandeira {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    object-fit: cover;
+    height: 150px;
+}
+.marcacao {
+    display: none;
+}
