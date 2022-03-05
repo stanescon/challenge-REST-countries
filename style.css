@@ -19,6 +19,62 @@ body {
     padding: 30px 80px;
     justify-content: space-between;
 }
+.conteudo-pais-selecionado {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    left: 0px;
+    top: 0px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    z-index: 5;
+
+}
+.botao-voltar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 130px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-left: 80px;
+    border: none;
+    box-shadow: 1px 1px 15px #c4c4c4;
+    font-family: 'Nunito Sans', sans-serif;
+    background: #ffffff;
+}
+.icon-voltar{
+    width: 30px;
+}
+.conteudo-conteudo-pais-selecionado {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+    margin: 0px 80px;
+}
+.bandeira-pais-selecionado {
+    width: 500px;
+}
+.informacoes-pais-selecionado{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+}
+.informacoes-pais-selecionado h2 {
+    grid-column: span 2;
+    margin-left: 0px;
+}
+.informacoes-pais-selecionado span {
+    font-weight: 600;
+}
+.fronteiras {
+    grid-column: span 2;
+    margin-top: 60px;
+}
 .input-padrao {
     font-family: 'Nunito Sans', sans-serif;
     padding: 15px;

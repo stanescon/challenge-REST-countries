@@ -4,7 +4,7 @@ const listaPaisesPrincipais = ['germany', 'united', 'brazil', 'iceland', 'mexico
 const conteudoPrincipal = document.querySelector('.conteudo-principal');
 const conteudoAleatorio = document.querySelector('.conteudo-aleatorio');
 const conteudoDinamico = document.querySelector('.conteudo-dinamico');
-
+const botaoVoltar = document.querySelector('.botao-voltar')
 
 
 
@@ -17,6 +17,7 @@ function incluirPaisesPrincipais(pais, posicao) {
         const populacao = resposta[0].population
         const regiao = resposta[0].region;
         const capital = resposta[0].capital[0]
+        const codigoPais = resposta[0].ccn3
 
         cartoes[posicao].innerHTML = `<img src="${bandeira}" class="bandeira">
         <h2 class="titulo">${nome}</h2>
@@ -24,9 +25,11 @@ function incluirPaisesPrincipais(pais, posicao) {
         <p class="continente"><span>Region:</span> ${regiao}</p>
         <p class="capital"><span>Capital:</span> ${capital}</p>`
 
+        cartoes[posicao].onclick = function(){
+            mostrarPaisCompleto(codigoPais) 
+        }
     })
 } 
-
 
 for(let i=0; i < cartoes.length; i++){
     incluirPaisesPrincipais(listaPaisesPrincipais[i],i)
@@ -42,9 +45,65 @@ function adcElemento (divPai, indiceMarcacao, legenda, string) {
     divPai.insertBefore(divNova, divAtual);
 
     divNova.addEventListener('click', function(ev){
-        console.log(ev)
+        let codigoPais = ""
+        
+        for(let i=0; i < ev.path.length; i++){
+            if(ev.path[i].classList && ev.path[i].classList.contains('cartao-pais')){
+                codigoPais =  ev.path[i].accessKey
+            }
+        }
+        mostrarPaisCompleto(codigoPais)
     })
 }
+
+botaoVoltar.onclick = function(){
+    document.querySelector('.conteudo-pais-selecionado').classList.add('oculto')
+}
+
+
+function mostrarPaisCompleto(codigoPais){
+    fetch(`https://restcountries.com/v3.1/alpha/${codigoPais}`)
+    .then(resposta => resposta.json()).then(resposta => {
+        const bandeira = resposta[0].flags.svg
+        const nome = resposta[0].name.common
+        const siglaIdioma = Object.keys(resposta[0].languages)[0]
+        const idioma = Object.values(resposta[0].languages).toString()
+        const nomeNativo = resposta[0].name.nativeName[siglaIdioma].common
+        const populacao = resposta[0].population
+        const regiao = resposta[0].region;
+        const subRegiao = resposta[0].subregion
+        const topLevelDomain = resposta[0].tld[0]
+        const arrMoedas = [] 
+        for(let i=0; i < Object.keys(resposta[0].currencies).length; i++){
+            arrMoedas.push(resposta[0].currencies[Object.keys(resposta[0].currencies)[i]].name)
+        }      
+        let moedas = arrMoedas.toString();
+        let capital = ""
+        if(resposta[0].capital != undefined){
+            capital = resposta[0].capital[0]
+        }
+
+        const informacoes = document.querySelector('.conteudo-conteudo-pais-selecionado');
+        informacoes.innerHTML = `<div class="bandeira-pais-selecionado">
+        <img src="${bandeira}" class="bandeira-pais-selecionado">
+        </div>
+        <div class="informacoes-pais-selecionado">
+        <h2 class="titulo">${nome}</h2>
+        <p class="nome-nativo"><span>Native Name:</span> ${nomeNativo}</p>
+        <p class="populacao"><span>Population:</span> ${populacao}</p>
+        <p class="regiao"><span>Region:</span> ${regiao}</p>
+        <p class="subregiao"><span>Sub Region:</span> ${subRegiao}</p>
+        <p class="capital"><span>Capital:</span> ${capital}</p>
+        <p class="domain"><span>Top Level Domain:</span> ${topLevelDomain}</p>
+        <p class="moeda"><span>Currencies:</span> ${moedas}</p>
+        <p class="idioma"><span>Languages:</span> ${idioma}</p>
+        <p class="fronteiras"><span>Border Countries:</span> </p>
+        </div>`
+        
+        document.querySelector('.conteudo-pais-selecionado').classList.remove('oculto')
+    })
+}
+
 
 
 function todosOsPaises (indice){
@@ -117,7 +176,6 @@ function mostrarRegiao(regiao){
         if(resposta[i].capital != undefined){
             capital = resposta[i].capital[0]
         }
-        console.log(codigo)
             adcElemento(conteudoDinamico, 1, codigo, `<img src="${bandeira}" class="bandeira">
             <h2 class="titulo">${nome}</h2>
             <p class="populacao"><span>Population:</span> ${populacao}</p>
@@ -127,10 +185,3 @@ function mostrarRegiao(regiao){
     })
 }
 
-
-for(let i=0; i < cartoes.length; i++){
-let todosOsCartoes = document.querySelectorAll('.cartao-pais')
-todosOsCartoes[i].addEventListener('click', function(ev){
-    console.log(ev)
-})
-}
