@@ -5,7 +5,7 @@ const conteudoPrincipal = document.querySelector('.conteudo-principal');
 const conteudoAleatorio = document.querySelector('.conteudo-aleatorio');
 const conteudoDinamico = document.querySelector('.conteudo-dinamico');
 const botaoVoltar = document.querySelector('.botao-voltar')
-
+const input = document.querySelector('.input-padrao')
 
 
 function incluirPaisesPrincipais(pais, posicao) {
@@ -103,6 +103,52 @@ function mostrarPaisCompleto(codigoPais){
         document.querySelector('.conteudo-pais-selecionado').classList.remove('oculto')
     })
 }
+
+
+function busca(valor, n){
+    fetch('https://restcountries.com/v3.1/all')
+    .then(resposta => resposta.json()).then(resposta => {
+        for(let i=0; i<250; i++){
+            let parteDoNome = ""
+            let nameArr = resposta[i].name.common.split("",n)
+            let bandeira = resposta[i].flags.svg
+            let nome = resposta[i].name.common
+            let populacao = resposta[i].population
+            let regiao = resposta[i].region;
+            let codigo = resposta[i].ccn3
+            let capital = ""
+            if(resposta[i].capital != undefined){
+                capital = resposta[i].capital[0]
+            }
+            for(let j = 0; j < n; j++){
+                parteDoNome = parteDoNome + nameArr[j]
+            }
+            if(parteDoNome.toLowerCase() == valor.toLowerCase()){
+                adcElemento(conteudoDinamico, 1, codigo, `<img src="${bandeira}" class="bandeira">
+                <h2 class="titulo">${nome}</h2>
+                <p class="populacao"><span>Population:</span> ${populacao}</p>
+                <p class="continente"><span>Region:</span> ${regiao}</p>
+                <p class="capital"><span>Capital:</span> ${capital}</p>`)
+            }
+        }
+    })
+}
+
+input.addEventListener('keyup', function(ev){
+    let n = ev.target.selectionEnd
+    let valor = ev.target.value
+    conteudoDinamico.innerHTML = '<div class="marcacao oculto"></div>'
+
+    if(n == 0 && conteudoPrincipal.classList.contains('oculto')){
+        conteudoPrincipal.classList.remove('oculto')
+    } else if(n > 0) {
+        conteudoPrincipal.classList.add('oculto')
+        busca(valor, n)
+    }
+})
+
+
+
 
 
 
