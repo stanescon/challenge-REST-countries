@@ -151,6 +151,38 @@ fieldset {
     background: #2b3743;
     color: #ffffff;
 }
+
+@media screen and (max-width: 1350px ){
+    .conteudo-principal, .conteudo-aleatorio, .conteudo-dinamico {
+        display: flex;
+        flex-direction: column;
+        padding: 0 40px;
+    }
+    .cartao-pais{
+        width: 300px;
+    }
+    .bandeira {
+        height: 180px;
+    }
+    .pesquisas {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 40px;
+    }
+    .input-padrao {
+        width: 250px;
+    }
+    .cabecalho{
+        padding: 30px 40px;
+    }
+    .filtro {
+        width: 100px;
+    }
+}
+
+
+
+
 .oculto {
     display: none;
 }
