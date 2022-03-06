@@ -153,6 +153,9 @@ fieldset {
 }
 
 @media screen and (max-width: 1350px ){
+    body{
+        align-items: center;
+    }
     .conteudo-principal, .conteudo-aleatorio, .conteudo-dinamico {
         display: flex;
         flex-direction: column;
@@ -173,7 +176,9 @@ fieldset {
         width: 250px;
     }
     .cabecalho{
+        width: 100%;
         padding: 30px 40px;
+        justify-content: space-around;
     }
     .filtro {
         width: 100px;
