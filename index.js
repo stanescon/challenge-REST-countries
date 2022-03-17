@@ -85,7 +85,7 @@ function mostrarPaisCompleto(codigoPais){
 
         const informacoes = document.querySelector('.conteudo-conteudo-pais-selecionado');
         informacoes.innerHTML = `<div class="bandeira-pais-selecionado">
-        <img src="${bandeira}" class="bandeira-pais-selecionado">
+        <img src="${bandeira}" class="imagem-bandeira-pais-selecionado">
         </div>
         <div class="informacoes-pais-selecionado">
         <h2 class="titulo">${nome}</h2>

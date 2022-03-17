@@ -55,7 +55,7 @@ body {
     align-items: center;
     margin: 0px 80px;
 }
-.bandeira-pais-selecionado {
+.imagem-bandeira-pais-selecionado {
     width: 500px;
 }
 .informacoes-pais-selecionado{
@@ -183,6 +183,20 @@ fieldset {
     }
     .filtro {
         width: 100px;
+    }
+    .conteudo-conteudo-pais-selecionado{
+        flex-direction: column;
+        margin: 0px 20px;
+    }
+    .bandeira-pais-selecionado{
+        width: 90%;
+        justify-self: center;
+    }
+    .imagem-bandeira-pais-selecionado{
+        width: 100%;
+    }
+    .botao-voltar{
+        margin-left: 20px;
     }
 }
 
